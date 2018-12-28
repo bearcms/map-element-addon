@@ -1,7 +1,7 @@
 {
     "id": "bearcms/map-element-addon",
     "name": "Map element",
-    "description": "",
+    "description": "Enable adding maps in your website. You can specify location by name or coordinates and configure zoom levels and map type. The addon is based on Google Maps.",
     "author": {
         "name": "Bear CMS",
         "email": "support@bearcms.com",
