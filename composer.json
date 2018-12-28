@@ -1,0 +1,21 @@
+{
+    "name": "bearcms/map-element-addon",
+    "description": "Map element for Bear CMS",
+    "keywords": ["map", "element", "Bear CMS"],
+    "homepage": "https://github.com/bearcms/map-element-addon",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bear CMS",
+            "email": "support@bearcms.com",
+            "homepage": "https://bearcms.com/"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "bearcms/bearframework-addon": "^0.6.2"
+    },
+    "autoload": {
+        "files": ["autoload.php"]
+    }
+}

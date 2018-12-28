@@ -1,0 +1,14 @@
+<?php
+
+/*
+ * Map element addon for Bear CMS
+ * https://github.com/bearcms/map-element-addon
+ * Copyright (c) Amplilabs Ltd.
+ * Free to use under the MIT license.
+ */
+
+BearFramework\Addons::register('bearcms/map-element-addon', __DIR__, [
+    'require' => [
+        'bearcms/bearframework-addon'
+    ]
+]);

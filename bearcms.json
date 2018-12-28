@@ -1,0 +1,17 @@
+{
+    "id": "bearcms/map-element-addon",
+    "name": "Map element",
+    "description": "",
+    "author": {
+        "name": "Bear CMS",
+        "email": "support@bearcms.com",
+        "url": "https://bearcms.com/"
+    },
+    "media": [
+        {
+            "filename": "/assets/1.jpg",
+            "width": 1246,
+            "height": 968
+        }
+    ]
+}
