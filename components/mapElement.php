@@ -1,4 +1,10 @@
 <?php
+/*
+ * Map element addon for Bear CMS
+ * https://github.com/bearcms/map-element-addon
+ * Copyright (c) Amplilabs Ltd.
+ * Free to use under the MIT license.
+ */
 
 use BearFramework\App;
 
@@ -56,9 +62,8 @@ $getGoogleMapUrl = function(array $parameters) {
     $url .= '&ie=UTF8&output=embed';
     return $url;
 };
-//$googleMapParameters['query'] = 'супермаркет';
 $content = '<iframe src="' . $getGoogleMapUrl($googleMapParameters) . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>';
-$content = '<div class="responsively-lazy" style="' . $containerStyle . 'font-size:0;line-height:0;" data-lazycontent="' . htmlentities($content) . '"></div>';
+$content = '<div class="bearcms-map-element responsively-lazy" style="' . $containerStyle . 'font-size:0;line-height:0;" data-lazycontent="' . htmlentities($content) . '"></div>';
 ?><html>
     <head>
         <style id="responsively-lazy-style">.responsively-lazy:not(img){position:relative;height:0;}.responsively-lazy:not(img)>img{position:absolute;top:0;left:0;width:100%;height:100%}img.responsively-lazy{width:100%;}</style>

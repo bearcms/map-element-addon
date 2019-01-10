@@ -17,6 +17,14 @@ $app->bearCMS->addons
                 $context = $app->context->get(__FILE__);
 
                 $context->assets->addDir('assets');
+                
+                $app->localization
+                ->addDictionary('en', function() use ($context) {
+                    return include $context->dir . '/locales/en.php';
+                })
+                ->addDictionary('bg', function() use ($context) {
+                    return include $context->dir . '/locales/bg.php';
+                });
 
                 \BearCMS\Internal\ElementsTypes::add('map', [
                     'componentSrc' => 'bearcms-map-element',
@@ -52,5 +60,16 @@ $app->bearCMS->addons
                         ]
                     ]
                 ]);
+                
+                \BearCMS\Internal\Themes::$elementsOptions['map'] = function($context, $idPrefix, $parentSelector) {
+                    $group = $context->addGroup(__('bearcms.themes.options.Map'));
+                    $group->addOption($idPrefix . "MapCSS", "css", '', [
+                        "cssTypes" => ["cssBorder", "cssRadius", "cssShadow"],
+                        "cssOutput" => [
+                            ["rule", $parentSelector . " .bearcms-map-element", "overflow:hidden;"],
+                            ["selector", $parentSelector . " .bearcms-map-element"]
+                        ]
+                    ]);
+                };
             };
         });
