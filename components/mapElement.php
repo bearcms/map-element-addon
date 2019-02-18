@@ -9,7 +9,7 @@
 use BearFramework\App;
 
 $app = App::get();
-$context = $app->context->get(__FILE__);
+$context = $app->contexts->get(__FILE__);
 
 $googleMapParameters = [];
 if (strlen($component->query) > 0) {
@@ -67,7 +67,7 @@ $content = '<div class="bearcms-map-element responsively-lazy" style="' . $conta
 ?><html>
     <head>
         <style id="responsively-lazy-style">.responsively-lazy:not(img){position:relative;height:0;}.responsively-lazy:not(img)>img{position:absolute;top:0;left:0;width:100%;height:100%}img.responsively-lazy{width:100%;}</style>
-        <script id="responsively-lazy-script" src="<?= $context->assets->getUrl('assets/responsivelyLazy.min.js', ['cacheMaxAge' => 999999999, 'version' => 2]) ?>" async/>
+        <script id="responsively-lazy-script" src="<?= $context->assets->getURL('assets/responsivelyLazy.min.js', ['cacheMaxAge' => 999999999, 'version' => 2]) ?>" async/>
     </head>
     <body><?= $content ?></body>
 </html>
