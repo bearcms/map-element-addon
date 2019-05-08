@@ -17,7 +17,7 @@ $app->bearCMS->addons
                 $context = $app->contexts->get(__FILE__);
 
                 $context->assets->addDir('assets');
-                
+
                 $app->localization
                 ->addDictionary('en', function() use ($context) {
                     return include $context->dir . '/locales/en.php';
@@ -60,7 +60,7 @@ $app->bearCMS->addons
                         ]
                     ]
                 ]);
-                
+
                 \BearCMS\Internal\Themes::$elementsOptions['map'] = function($context, $idPrefix, $parentSelector) {
                     $group = $context->addGroup(__('bearcms.themes.options.Map'));
                     $group->addOption($idPrefix . "MapCSS", "css", '', [
@@ -71,5 +71,20 @@ $app->bearCMS->addons
                         ]
                     ]);
                 };
+
+                $app->clientShortcuts
+                ->add('-bearcms-map-element-responsively-lazy', function(IvoPetkov\BearFrameworkAddons\ClientShortcut $shortcut) use ($context) {
+                    $shortcut->requirements[] = [
+                        'type' => 'file',
+                        'url' => $context->assets->getURL('assets/responsivelyLazy.min.js', ['cacheMaxAge' => 999999999, 'version' => 2]),
+                        'async' => true,
+                        'mimeType' => 'text/javascript'
+                    ];
+                    $shortcut->requirements[] = [
+                        'type' => 'text',
+                        'value' => '.responsively-lazy:not(img){position:relative;height:0;}.responsively-lazy:not(img)>img{position:absolute;top:0;left:0;width:100%;height:100%}img.responsively-lazy{width:100%;}',
+                        'mimeType' => 'text/css'
+                    ];
+                });
             };
         });
