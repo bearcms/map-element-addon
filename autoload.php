@@ -11,6 +11,6 @@ BearFramework\Addons::register('bearcms/map-element-addon', __DIR__, [
     'require' => [
         'bearcms/bearframework-addon',
         'bearframework/localization-addon',
-        'ivopetkov/client-shortcuts-bearframework-addon'
+        'ivopetkov/client-packages-bearframework-addon'
     ]
 ]);

@@ -66,7 +66,7 @@ $content = '<iframe src="' . $getGoogleMapUrl($googleMapParameters) . '" framebo
 $content = '<div class="bearcms-map-element responsively-lazy" style="' . $containerStyle . 'font-size:0;line-height:0;" data-lazycontent="' . htmlentities($content) . '"></div>';
 ?><html>
     <head>
-        <link rel="client-shortcuts-embed" name="-bearcms-map-element-responsively-lazy">
+        <link rel="client-packages-embed" name="-bearcms-map-element-responsively-lazy">
     </head>
     <body><?= $content ?></body>
 </html>
