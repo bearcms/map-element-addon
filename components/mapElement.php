@@ -46,12 +46,12 @@ if (strlen($aspectRatio) > 0) {
             }
         }
     }
-    $containerStyle = 'padding-bottom:' . $paddingBottom . ';';
+    $containerStyle = 'position:relative;height:0;padding-bottom:' . $paddingBottom . ';';
 } else {
     if (strlen($height) === 0) {
         $height = '420px';
     }
-    $containerStyle = 'height:' . $height . ';';
+    $containerStyle = 'position:relative;height:' . $height . ';';
 }
 
 $getGoogleMapUrl = function (array $parameters) {
@@ -73,11 +73,11 @@ $getGoogleMapUrl = function (array $parameters) {
     return $url;
 };
 $content = '<iframe src="' . $getGoogleMapUrl($googleMapParameters) . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>';
-$content = '<div class="bearcms-map-element responsively-lazy" style="' . $containerStyle . 'font-size:0;line-height:0;" data-lazycontent="' . htmlentities($content) . '"></div>';
+$content = '<div class="bearcms-map-element" style="' . $containerStyle . 'font-size:0;line-height:0;" data-responsively-lazy-type="html" data-responsively-lazy="' . htmlentities($content) . '"></div>';
 ?><html>
 
 <head>
-    <link rel="client-packages-embed" name="-bearcms-map-element-responsively-lazy">
+<link rel="client-packages-embed" name="responsivelyLazy">
 </head>
 
 <body><?= $content ?></body>
