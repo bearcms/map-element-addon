@@ -6,29 +6,24 @@
  * Free to use under the MIT license.
  */
 
-use BearFramework\App;
-
-$app = App::get();
-$context = $app->contexts->get(__DIR__);
-
 $googleMapParameters = [];
-if (strlen($component->query) > 0) {
+if (strlen((string)$component->query) > 0) {
     $googleMapParameters['query'] = $component->query;
 }
-if (strlen($component->latitude) > 0) {
+if (strlen((string)$component->latitude) > 0) {
     $googleMapParameters['latitude'] = $component->latitude;
 }
-if (strlen($component->longitude) > 0) {
+if (strlen((string)$component->longitude) > 0) {
     $googleMapParameters['longitude'] = $component->longitude;
 }
-if (strlen($component->zoom) > 0) {
+if (strlen((string)$component->zoom) > 0) {
     $googleMapParameters['zoom'] = $component->zoom;
 }
-if (strlen($component->type) > 0) {
+if (strlen((string)$component->type) > 0) {
     $googleMapParameters['type'] = $component->type;
 }
-$aspectRatio = $component->aspectRatio;
-$height = $component->height;
+$aspectRatio = (string)$component->aspectRatio;
+$height = (string)$component->height;
 
 if (strlen($aspectRatio) > 0) {
     $aspectRatioParts = explode(':', $aspectRatio);
@@ -54,7 +49,7 @@ if (strlen($aspectRatio) > 0) {
     $containerStyle = 'position:relative;height:' . $height . ';';
 }
 
-$getGoogleMapUrl = function (array $parameters) {
+$getGoogleMapURL = function (array $parameters) {
     $url = 'https://maps.google.com/maps?';
     if (isset($parameters['query'])) {
         if (strlen($parameters['query']) > 0) {
@@ -72,14 +67,9 @@ $getGoogleMapUrl = function (array $parameters) {
     $url .= '&ie=UTF8&output=embed';
     return $url;
 };
-$content = '<iframe src="' . $getGoogleMapUrl($googleMapParameters) . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>';
-$content = '<div class="bearcms-map-element" style="' . $containerStyle . 'font-size:0;line-height:0;" data-responsively-lazy-type="html" data-responsively-lazy="' . htmlentities($content) . '"></div>';
-?><html>
-
-<head>
-<link rel="client-packages-embed" name="responsivelyLazy">
-</head>
-
-<body><?= $content ?></body>
-
-</html>
+$content = '<iframe src="' . $getGoogleMapURL($googleMapParameters) . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>';
+echo '<html><head>';
+echo '<link rel="client-packages-embed" name="responsivelyLazy">';
+echo '</head><body>';
+echo '<div class="bearcms-map-element" style="' . $containerStyle . 'font-size:0;line-height:0;" data-responsively-lazy-type="html" data-responsively-lazy="' . htmlentities($content) . '"></div>';
+echo '</body></html>';
