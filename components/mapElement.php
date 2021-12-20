@@ -6,6 +6,10 @@
  * Free to use under the MIT license.
  */
 
+$outputType = (string) $component->getAttribute('output-type');
+$outputType = isset($outputType[0]) ? $outputType : 'full-html';
+$isFullHtmlOutputType = $outputType === 'full-html';
+
 $googleMapParameters = [];
 if (strlen((string)$component->query) > 0) {
     $googleMapParameters['query'] = $component->query;
@@ -67,9 +71,15 @@ $getGoogleMapURL = function (array $parameters) {
     $url .= '&ie=UTF8&output=embed';
     return $url;
 };
-$content = '<iframe src="' . $getGoogleMapURL($googleMapParameters) . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>';
+$content = '<iframe src="' . $getGoogleMapURL($googleMapParameters) . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"' . ($isFullHtmlOutputType ? ' style="position:absolute;top:0;left:0;width:100%;height:100%;"' : ' style="width:100%;"') . '></iframe>';
 echo '<html><head>';
-echo '<link rel="client-packages-embed" name="responsivelyLazy">';
+if ($isFullHtmlOutputType) {
+    echo '<link rel="client-packages-embed" name="responsivelyLazy">';
+}
 echo '</head><body>';
-echo '<div class="bearcms-map-element" style="' . $containerStyle . 'font-size:0;line-height:0;" data-responsively-lazy-type="html" data-responsively-lazy="' . htmlentities($content) . '"></div>';
+if ($isFullHtmlOutputType) {
+    echo '<div class="bearcms-map-element" style="' . $containerStyle . 'font-size:0;line-height:0;" data-responsively-lazy-type="html" data-responsively-lazy="' . htmlentities($content) . '"></div>';
+} else {
+    $content;
+}
 echo '</body></html>';
