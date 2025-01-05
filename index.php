@@ -12,8 +12,8 @@ use BearFramework\App;
 $app = App::get();
 
 $app->bearCMS->addons
-    ->register('bearcms/map-element-addon', function (\BearCMS\Addons\Addon $addon) use ($app) {
-        $addon->initialize = function () use ($app) {
+    ->register('bearcms/map-element-addon', function (\BearCMS\Addons\Addon $addon) use ($app): void {
+        $addon->initialize = function () use ($app): void {
             $context = $app->contexts->get(__DIR__);
 
             $context->assets->addDir('assets');
@@ -59,7 +59,7 @@ $app->bearCMS->addons
             ];
             \BearCMS\Internal\ElementsTypes::add($type);
 
-            \BearCMS\Internal\Themes::$elementsOptions['map'] = function ($context, $idPrefix, $parentSelector) {
+            \BearCMS\Internal\Themes::$elementsOptions['map'] = function ($context, $idPrefix, $parentSelector): void {
                 $group = $context->addGroup(__('bearcms.themes.options.Map'));
                 $group->addOption($idPrefix . "MapCSS", "css", '', [
                     "cssTypes" => ["cssBorder", "cssRadius", "cssShadow"],
